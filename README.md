@@ -3,6 +3,9 @@
 A simple web toolkit for inspecting and previewing Blizzard BLP image files in
 your browser.
 
+**Live preview:** Available at
+[https://blp.pinta.land/](https://blp.pinta.land/)
+
 - **Upload** a `.blp` file to view its metadata and a live PNG preview.
 - **Work in progress:** Batch processing and PNG downloading features are coming
   soon.
