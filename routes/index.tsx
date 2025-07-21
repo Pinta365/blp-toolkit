@@ -22,7 +22,7 @@ export default define.page(function Home() {
             href="https://jsr.io/@pinta365/blp"
             class="underline hover:text-blue-600"
             target="_blank"
-            rel="noopener"
+            rel="noopener external"
           >
             @pinta365/blp
           </a>.
@@ -34,7 +34,7 @@ export default define.page(function Home() {
             href="https://github.com/Pinta365/blp-toolkit"
             class="underline hover:text-blue-600"
             target="_blank"
-            rel="noopener"
+            rel="noopener external"
           >
             GitHub
           </a>.
