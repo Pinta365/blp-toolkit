@@ -27,6 +27,18 @@ export default define.page(function Home() {
             @pinta365/blp
           </a>.
         </span>
+        <br />
+        <span>
+          Found a bug or have feedback? Report issues or contribute on{" "}
+          <a
+            href="https://github.com/Pinta365/blp-toolkit"
+            class="underline hover:text-blue-600"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>.
+        </span>
       </footer>
     </div>
   );
