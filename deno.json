@@ -1,0 +1,46 @@
+{
+  "tasks": {
+    "check": "deno fmt --check . && deno lint . && deno check",
+    "dev": "deno run -A --watch=static/,routes/ dev.ts",
+    "build": "deno run -A dev.ts build",
+    "start": "deno run -A main.ts",
+    "update": "deno run -A -r jsr:@fresh/update ."
+  },
+  "lint": {
+    "rules": {
+      "tags": [
+        "fresh",
+        "recommended"
+      ]
+    }
+  },
+  "exclude": [
+    "**/_fresh/*"
+  ],
+  "imports": {
+    "@pinta365/blp": "jsr:@pinta365/blp@^0.0.2",
+    "fresh": "jsr:@fresh/core@^2.0.0-alpha.43",
+    "preact": "npm:preact@^10.26.9",
+    "@preact/signals": "npm:@preact/signals@^2.2.1",
+    "tailwindcss": "npm:tailwindcss@^3.4.3",
+    "@fresh/plugin-tailwind": "jsr:@fresh/plugin-tailwind@^0.0.1-alpha.7"
+  },
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.asynciterable",
+      "dom.iterable",
+      "deno.ns"
+    ],
+    "jsx": "precompile",
+    "jsxImportSource": "preact",
+    "jsxPrecompileSkipElements": [
+      "a",
+      "img",
+      "source",
+      "body",
+      "html",
+      "head"
+    ]
+  }
+}
