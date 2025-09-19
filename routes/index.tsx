@@ -5,10 +5,14 @@ export default define.page(function Home() {
   return (
     <div class="min-h-screen flex flex-col">
       <div class="flex-1 flex flex-col items-center">
-        <h1 class="text-3xl font-bold mb-2 text-gray-900">BLP Toolkit</h1>
+        <h1 class="text-3xl font-bold mb-2 text-gray-900">
+          BLP ↔ PNG Toolkit
+        </h1>
         <p class="mb-6 text-gray-600 text-center max-w-lg">
           Upload a <span class="font-semibold text-blue-600">.blp</span>{" "}
-          file to see its information and export to PNG.
+          file to convert to PNG, or upload a{" "}
+          <span class="font-semibold text-green-600">.png</span>{" "}
+          file to convert to BLP format.
         </p>
         <FileUploader />
       </div>
