@@ -24,13 +24,7 @@ import FileInfoDisplay from "../components/FileInfoDisplay.tsx";
 import PreviewSection from "../components/PreviewSection.tsx";
 import ExportOptions from "./ExportOptions.tsx";
 
-interface FileUploaderProps {
-  onFileUploaded?: () => void;
-}
-
-export default function FileUploader(
-  { onFileUploaded }: FileUploaderProps = {},
-) {
+export default function FileUploader() {
   const [file, setFile] = useState<File | null>(null);
   const [header, setHeader] = useState<BlpHeader | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -107,7 +101,6 @@ export default function FileUploader(
         setPreviewPngUrl(pngUrl);
         setPreviewSize(file.size);
         setPreviewBlob(file);
-        onFileUploaded?.();
       } else {
         // Handle BLP to PNG conversion (existing logic)
         const blpHeader = parseBlpHeader(data);
@@ -171,7 +164,6 @@ export default function FileUploader(
               prevFormatRef.current = recommendedFormat.id;
             }
           }
-          onFileUploaded?.();
         } catch (error) {
           console.error("Analysis failed:", error);
           setAnalysisError(
@@ -254,15 +246,14 @@ export default function FileUploader(
     downloadBlp(previewBlpBlob, file.name, format);
   };
 
-  const handleFileChange = (e: Event) => {
-    const target = e.target as HTMLInputElement;
-    const files = target.files;
+  const handleFileChange = (e: JSX.TargetedEvent<HTMLInputElement>) => {
+    const files = e.currentTarget.files;
     if (files && files.length > 0) {
       processFile(files[0]);
     }
   };
 
-  const handleDrop = (e: DragEvent) => {
+  const handleDrop = (e: JSX.TargetedDragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragOver(false);
     const files = e.dataTransfer?.files;
@@ -271,25 +262,23 @@ export default function FileUploader(
     }
   };
 
-  const handleDragOver = (e: DragEvent) => {
+  const handleDragOver = (e: JSX.TargetedDragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragOver(true);
   };
 
-  const handleDragLeave = (e: DragEvent) => {
+  const handleDragLeave = (e: JSX.TargetedDragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragOver(false);
   };
 
-  const handleFormatChange = (e: Event) => {
-    const target = e.target as HTMLSelectElement;
-    const newFormat = target.value;
+  const handleFormatChange = (e: JSX.TargetedEvent<HTMLSelectElement>) => {
+    const newFormat = e.currentTarget.value;
     setSelectedFormat(newFormat);
   };
 
-  const handleBlpFormatChange = (e: Event) => {
-    const target = e.target as HTMLSelectElement;
-    const newFormat = target.value;
+  const handleBlpFormatChange = (e: JSX.TargetedEvent<HTMLSelectElement>) => {
+    const newFormat = e.currentTarget.value;
     setSelectedBlpFormat(newFormat);
   };
 
