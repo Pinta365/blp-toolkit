@@ -89,7 +89,7 @@ export default function FileUploader() {
 
         // Generate BLP preview
         const blpData = await exportToBlp(data, defaultFormat);
-        const blpBlob = new Blob([blpData], {
+        const blpBlob = new Blob([new Uint8Array(blpData)], {
           type: "application/octet-stream",
         });
         setPreviewBlpBlob(blpBlob);
@@ -112,7 +112,7 @@ export default function FileUploader() {
         const defaultFormat = formats.find((f) => f.recommended) || formats[0];
 
         const png = await exportToPng(data, defaultFormat);
-        const blob = new Blob([png], { type: "image/png" });
+        const blob = new Blob([new Uint8Array(png)], { type: "image/png" });
         const url = URL.createObjectURL(blob);
 
         setPngUrl(url);
@@ -148,9 +148,12 @@ export default function FileUploader() {
               recommendedFormat && recommendedFormat.id !== defaultFormat.id
             ) {
               const recommendedPng = await exportToPng(data, recommendedFormat);
-              const recommendedBlob = new Blob([recommendedPng], {
-                type: "image/png",
-              });
+              const recommendedBlob = new Blob(
+                [new Uint8Array(recommendedPng)],
+                {
+                  type: "image/png",
+                },
+              );
               const recommendedUrl = URL.createObjectURL(recommendedBlob);
 
               URL.revokeObjectURL(url);
@@ -192,7 +195,7 @@ export default function FileUploader() {
     try {
       const data = new Uint8Array(await file.arrayBuffer());
       const png = await exportToPng(data, format);
-      const blob = new Blob([png], { type: "image/png" });
+      const blob = new Blob([new Uint8Array(png)], { type: "image/png" });
       const url = URL.createObjectURL(blob);
 
       if (previewPngUrl) {
@@ -219,7 +222,9 @@ export default function FileUploader() {
     try {
       const data = new Uint8Array(await file.arrayBuffer());
       const blpData = await exportToBlp(data, format);
-      const blob = new Blob([blpData], { type: "application/octet-stream" });
+      const blob = new Blob([new Uint8Array(blpData)], {
+        type: "application/octet-stream",
+      });
 
       setPreviewBlpBlob(blob);
       setPreviewBlpSize(blob.size);
